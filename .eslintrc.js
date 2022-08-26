@@ -42,5 +42,6 @@ module.exports = {
       'error',
       {namedComponents: 'arrow-function'},
     ],
+    'react/react-in-jsx-scope': 'off',
   },
 };

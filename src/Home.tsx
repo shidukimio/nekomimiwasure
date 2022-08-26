@@ -1,5 +1,4 @@
 import {AppBar, Box, createTheme, CssBaseline, Link, ThemeProvider, Toolbar, Typography} from '@mui/material';
-import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 
 const Copyright = () => (
