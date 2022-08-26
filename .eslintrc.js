@@ -37,5 +37,10 @@ module.exports = {
     'react',
   ],
   rules: {
+    // https://zenn.dev/toshiyuki/articles/d2d8b53a9cbfa8
+    'react/function-component-definition': [
+      'error',
+      {namedComponents: 'arrow-function'},
+    ],
   },
 };
