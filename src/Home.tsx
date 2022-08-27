@@ -1,5 +1,6 @@
 import {AppBar, Box, createTheme, CssBaseline, Link, ThemeProvider, Toolbar, Typography} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
+import AppImageGallery from './AppImageGallery';
 
 const Copyright = () => (
   <Typography variant='body2' color='text.secondary' align='center'>
@@ -40,6 +41,9 @@ export const Home = () => (
         <Typography noWrap variant='h6' component='h1' color='inherit'>ねこみみの忘れもの</Typography>
       </Toolbar>
     </AppBar>
+    <main>
+      <AppImageGallery/>
+    </main>
     {/* Footer */}
     <Box sx={{bgcolor: 'background.paper', p: 6}} component='footer'>
       <Copyright/>
