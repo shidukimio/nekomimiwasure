@@ -44,7 +44,7 @@ export const Home = () => (
     <main>
       <Container sx={{py: 1}} maxWidth='lg'>
         <Grid container>
-          <Grid xs={12}>
+          <Grid item xs={12}>
             <AppImageGallery/>
           </Grid>
         </Grid>
