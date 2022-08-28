@@ -1,12 +1,13 @@
 import {CircularProgress} from '@mui/material';
-import {getDownloadURL, listAll, ref} from 'firebase/storage';
+import type {StorageReference} from 'firebase/storage';
+import {getDownloadURL, getMetadata, listAll, ref} from 'firebase/storage';
 import {useEffect, useState} from 'react';
 import type {ReactImageGalleryItem} from 'react-image-gallery';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import storage from './firebase';
 
-const imagesRef = ref(storage, 'image');
+const listRef = ref(storage, 'image');
 
 const AppImageGallery = () => {
   const [stateImages, setStateImages] = useState<ReactImageGalleryItem[]>([]);
@@ -23,7 +24,7 @@ const AppImageGallery = () => {
     }
 
     // 表示情報を取得
-    listAll(imagesRef).then(res => {
+    listAll(listRef).then(res => {
       const itemSize = res.items.length;
       console.log('count:' + String(itemSize));
 
@@ -32,28 +33,64 @@ const AppImageGallery = () => {
       res.items.forEach(itemRef => {
         console.log(itemRef.fullPath);
         console.log('14');
+        const imageRef: StorageReference = ref(storage, itemRef.fullPath);
 
-        // https://firebase.google.com/docs/storage/web/download-files
-        getDownloadURL(ref(storage, itemRef.fullPath)).then(url => {
-          console.log(url);
+        // https://firebase.google.com/docs/storage/web/file-metadata?hl=ja
+        getMetadata(imageRef).then(metadata => {
+          console.log(metadata);
 
-          // 取得したダウンロードURLを貯める
-          console.log('21');
-          images.push({
-            original: url,
-            thumbnail: url,
+          // https://firebase.google.com/docs/storage/web/download-files
+          // eslint-disable-next-line max-nested-callbacks
+          getDownloadURL(imageRef).then(url => {
+            console.log(url);
+
+            // 取得したダウンロードURLを貯める
+            console.log('21');
+            images.push({
+              original: url,
+              thumbnail: url,
+              description: metadata.updated,
+            });
+          // eslint-disable-next-line max-nested-callbacks
+          }).catch(error => {
+            console.log(error);
+          // eslint-disable-next-line max-nested-callbacks
+          }).finally(() => {
+            // ダウンロードURLを全て取得したか確認
+            console.log('count-download:' + String(images.length));
+            console.log('42');
+            if (itemSize === images.length) {
+              // 並び替え
+              // eslint-disable-next-line max-nested-callbacks
+              images.sort((imageA: ReactImageGalleryItem, imageB: ReactImageGalleryItem) => {
+                if (imageA.description === undefined) {
+                  return 0;
+                }
+
+                if (imageB.description === undefined) {
+                  return 0;
+                }
+
+                if (imageA.description < imageB.description) {
+                  return 1;
+                }
+
+                if (imageB.description < imageA.description) {
+                  return -1;
+                }
+
+                return 0;
+              });
+
+              // 値を設定して画面再表示
+              console.log('44');
+              setStateImages(images);
+            }
           });
         }).catch(error => {
           console.log(error);
         }).finally(() => {
-          // ダウンロードURLを全て取得したか確認
-          console.log('count-download:' + String(images.length));
-          console.log('42');
-          if (itemSize === images.length) {
-            // 値を設定して画面再表示
-            console.log('44');
-            setStateImages(images);
-          }
+          console.log('42:meta');
         });
       });
     }).catch(error => {
