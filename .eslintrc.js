@@ -43,5 +43,9 @@ module.exports = {
       {namedComponents: 'arrow-function'},
     ],
     'react/react-in-jsx-scope': 'off',
+
+    // 個人的な設定
+    'capitalized-comments': 'off', // コメントの最初の文字の大文字化を強制または禁止する→コメントの書き方を強制されたくない
+    'no-warning-comments': 'off', // コメントで指定された警告用語(TODO等)を許可しない→コメントの書き方を強制されたくない
   },
 };
