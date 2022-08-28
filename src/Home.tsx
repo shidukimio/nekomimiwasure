@@ -1,4 +1,4 @@
-import {AppBar, Box, createTheme, CssBaseline, Link, ThemeProvider, Toolbar, Typography} from '@mui/material';
+import {AppBar, Box, Container, createTheme, CssBaseline, Grid, Link, ThemeProvider, Toolbar, Typography} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AppImageGallery from './AppImageGallery';
 
@@ -42,10 +42,16 @@ export const Home = () => (
       </Toolbar>
     </AppBar>
     <main>
-      <AppImageGallery/>
+      <Container sx={{py: 1}} maxWidth='lg'>
+        <Grid container>
+          <Grid xs={12}>
+            <AppImageGallery/>
+          </Grid>
+        </Grid>
+      </Container>
     </main>
     {/* Footer */}
-    <Box sx={{bgcolor: 'background.paper', p: 6}} component='footer'>
+    <Box sx={{bgcolor: 'background.paper', p: 1}} component='footer'>
       <Copyright/>
     </Box>
     {/* End footer */}
