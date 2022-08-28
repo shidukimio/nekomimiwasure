@@ -86,7 +86,7 @@ const AppImageGallery = () => {
   useEffect(() => {
     // 初期化済の時は取得処理をしない
     console.log('18');
-    if (stateImages.length > 0) {
+    if (0 < stateImages.length) {
       console.log('20');
       return;
     }
