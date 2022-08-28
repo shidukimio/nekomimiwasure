@@ -5,7 +5,7 @@ import AppImageGallery from './AppImageGallery';
 const Copyright = () => (
   <Typography variant='body2' color='text.secondary' align='center'>
     {'Copyright © '}
-    <Link color='inherit' href='./nekomimiwasure'>
+    <Link color='inherit' href={process.env.PUBLIC_URL}>
       しづきみお
     </Link>{' '}
     {new Date().getFullYear()}{'.'}
