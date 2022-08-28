@@ -1,3 +1,4 @@
+import {CircularProgress} from '@mui/material';
 import {getDownloadURL, listAll, ref} from 'firebase/storage';
 import {useEffect, useState} from 'react';
 import type {ReactImageGalleryItem} from 'react-image-gallery';
@@ -62,6 +63,11 @@ const AppImageGallery = () => {
     });
     console.log('33');
   });
+
+  // 表示情報取得前は待機のイメージを表示
+  if (stateImages.length <= 0) {
+    return <CircularProgress/>;
+  }
 
   return (
     <ImageGallery items={stateImages}/>
