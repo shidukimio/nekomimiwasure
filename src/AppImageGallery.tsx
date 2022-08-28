@@ -15,7 +15,9 @@ const AppImageGallery = () => {
   // 空のuseSateで画面表示をしておいて、ダウンロードURLの取得が完了したら再表示を行う
   useEffect(() => {
     // 初期化済の時は取得処理をしない
+    console.log('18');
     if (stateImages.length > 0) {
+      console.log('20');
       return;
     }
 
