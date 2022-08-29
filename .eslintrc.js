@@ -23,19 +23,14 @@ module.exports = {
         'xo-typescript',
         'xo-typescript/space',
       ],
-      files: [
-        '*.ts',
-        '*.tsx',
-      ],
+      files: ['*.ts', '*.tsx'],
     },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
     // https://zenn.dev/toshiyuki/articles/d2d8b53a9cbfa8
     'react/function-component-definition': [
@@ -43,6 +38,9 @@ module.exports = {
       {namedComponents: 'arrow-function'},
     ],
     'react/react-in-jsx-scope': 'off',
+
+    // フォーマッタ(Prettier)要因でチェックOFF
+    'react/jsx-tag-spacing': 'off',
 
     // 個人的な設定
     'capitalized-comments': 'off', // コメントの最初の文字の大文字化を強制または禁止する→コメントの書き方を強制されたくない

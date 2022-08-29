@@ -10,7 +10,10 @@ import storage from './firebase';
 
 const listRef = ref(storage, 'image');
 
-function setImages(res: ListResult, setStateImages: Dispatch<SetStateAction<ReactImageGalleryItem[]>>) {
+function setImages(
+  res: ListResult,
+  setStateImages: Dispatch<SetStateAction<ReactImageGalleryItem[]>>,
+) {
   const itemSize = res.items.length;
   console.log('count:' + String(itemSize));
 
@@ -22,58 +25,69 @@ function setImages(res: ListResult, setStateImages: Dispatch<SetStateAction<Reac
     const imageRef: StorageReference = ref(storage, itemRef.fullPath);
 
     // https://firebase.google.com/docs/storage/web/file-metadata?hl=ja
-    getMetadata(imageRef).then(metadata => {
-      console.log(metadata);
+    getMetadata(imageRef)
+      .then(metadata => {
+        console.log(metadata);
 
-      // https://firebase.google.com/docs/storage/web/download-files
-      getDownloadURL(imageRef).then(url => {
-        console.log(url);
+        // https://firebase.google.com/docs/storage/web/download-files
+        getDownloadURL(imageRef)
+          .then(url => {
+            console.log(url);
 
-        // 取得したダウンロードURLを貯める
-        console.log('21');
-        images.push({
-          original: url,
-          thumbnail: url,
-          description: metadata.updated,
-        });
-      }).catch(error => {
-        console.log(error);
-      }).finally(() => {
-        // ダウンロードURLを全て取得したか確認
-        console.log('count-download:' + String(images.length));
-        console.log('42');
-        if (itemSize === images.length) {
-          // 並び替え
-          images.sort((imageA: ReactImageGalleryItem, imageB: ReactImageGalleryItem) => {
-            if (imageA.description === undefined) {
-              return 0;
+            // 取得したダウンロードURLを貯める
+            console.log('21');
+            images.push({
+              original: url,
+              thumbnail: url,
+              description: metadata.updated,
+            });
+          })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {
+            // ダウンロードURLを全て取得したか確認
+            console.log('count-download:' + String(images.length));
+            console.log('42');
+            if (itemSize === images.length) {
+              // 並び替え
+              images.sort(
+                (
+                  imageA: ReactImageGalleryItem,
+                  imageB: ReactImageGalleryItem,
+                ) => {
+                  if (imageA.description === undefined) {
+                    return 0;
+                  }
+
+                  if (imageB.description === undefined) {
+                    return 0;
+                  }
+
+                  if (imageA.description < imageB.description) {
+                    return 1;
+                  }
+
+                  if (imageB.description < imageA.description) {
+                    return -1;
+                  }
+
+                  return 0;
+                },
+              );
+
+              // 値を設定して画面再表示
+              console.log('44');
+              setStateImages(images);
             }
-
-            if (imageB.description === undefined) {
-              return 0;
-            }
-
-            if (imageA.description < imageB.description) {
-              return 1;
-            }
-
-            if (imageB.description < imageA.description) {
-              return -1;
-            }
-
-            return 0;
           });
-
-          // 値を設定して画面再表示
-          console.log('44');
-          setStateImages(images);
-        }
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      .finally(() => {
+        console.log('42:meta');
       });
-    }).catch(error => {
-      console.log(error);
-    }).finally(() => {
-      console.log('42:meta');
-    });
   });
 }
 
@@ -92,24 +106,25 @@ const AppImageGallery = () => {
     }
 
     // 表示情報を取得
-    listAll(listRef).then(res => {
-      setImages(res, setStateImages);
-    }).catch(error => {
-      console.log(error);
-    }).finally(() => {
-      console.log('46');
-    });
+    listAll(listRef)
+      .then(res => {
+        setImages(res, setStateImages);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      .finally(() => {
+        console.log('46');
+      });
     console.log('33');
   });
 
   // 表示情報取得前は待機のイメージを表示
   if (stateImages.length <= 0) {
-    return <CircularProgress/>;
+    return <CircularProgress />;
   }
 
-  return (
-    <ImageGallery items={stateImages}/>
-  );
+  return <ImageGallery items={stateImages} />;
 };
 
 export default AppImageGallery;
