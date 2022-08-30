@@ -46,5 +46,6 @@ module.exports = {
     'capitalized-comments': 'off', // コメントの最初の文字の大文字化を強制または禁止する→コメントの書き方を強制されたくない
     'no-warning-comments': 'off', // コメントで指定された警告用語(TODO等)を許可しない→コメントの書き方を強制されたくない
     yoda: ['error', 'never', {onlyEquality: true}], // 「ヨーダ」条件を要求または禁止する→不等号の向きは揃えたいのでイコールの時だけ有効にする
+    'arrow-parens': ['error', 'always'], // Prettierのデフォルト[always]を優先
   },
 };

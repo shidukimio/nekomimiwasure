@@ -19,19 +19,19 @@ function setImages(
 
   // ダウンロードURLを取得
   const images: ReactImageGalleryItem[] = [];
-  res.items.forEach(itemRef => {
+  res.items.forEach((itemRef) => {
     console.log(itemRef.fullPath);
     console.log('14');
     const imageRef: StorageReference = ref(storage, itemRef.fullPath);
 
     // https://firebase.google.com/docs/storage/web/file-metadata?hl=ja
     getMetadata(imageRef)
-      .then(metadata => {
+      .then((metadata) => {
         console.log(metadata);
 
         // https://firebase.google.com/docs/storage/web/download-files
         getDownloadURL(imageRef)
-          .then(url => {
+          .then((url) => {
             console.log(url);
 
             // 取得したダウンロードURLを貯める
@@ -42,7 +42,7 @@ function setImages(
               description: metadata.updated,
             });
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
           })
           .finally(() => {
@@ -82,7 +82,7 @@ function setImages(
             }
           });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       })
       .finally(() => {
@@ -107,10 +107,10 @@ const AppImageGallery = () => {
 
     // 表示情報を取得
     listAll(listRef)
-      .then(res => {
+      .then((res) => {
         setImages(res, setStateImages);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       })
       .finally(() => {
