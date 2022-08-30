@@ -8,7 +8,7 @@ import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import storage from './firebase';
 
-const listRef = ref(storage, 'image');
+const listRef = ref(storage, 'public/images');
 
 function setImages(
   res: ListResult,
