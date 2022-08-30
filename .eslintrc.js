@@ -47,5 +47,6 @@ module.exports = {
     'no-warning-comments': 'off', // コメントで指定された警告用語(TODO等)を許可しない→コメントの書き方を強制されたくない
     yoda: ['error', 'never', {onlyEquality: true}], // 「ヨーダ」条件を要求または禁止する→不等号の向きは揃えたいのでイコールの時だけ有効にする
     'arrow-parens': ['error', 'always'], // Prettierのデフォルト[always]を優先
+    'arrow-body-style': ['error', 'always'], // 省略せずに{}とreturnを記載する→書き方が複数あるのがわかりにくい、機能拡張した時の変化点が大きい
   },
 };
