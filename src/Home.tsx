@@ -51,14 +51,14 @@ export const Home = () => {
       <CssBaseline />
       <AppBar position='relative'>
         <Toolbar>
-          <HomeIcon sx={{mr: 2}} />
+          <HomeIcon sx={{ mr: 2 }} />
           <Typography noWrap variant='h6' component='h1' color='inherit'>
             ねこみみの忘れもの
           </Typography>
         </Toolbar>
       </AppBar>
       <main>
-        <Container sx={{py: 1}} maxWidth='lg'>
+        <Container sx={{ py: 1 }} maxWidth='lg'>
           <Grid container>
             <Grid item xs={12}>
               <AppImageGallery />
@@ -67,7 +67,7 @@ export const Home = () => {
         </Container>
       </main>
       {/* Footer */}
-      <Box sx={{bgcolor: 'background.paper', p: 1}} component='footer'>
+      <Box sx={{ bgcolor: 'background.paper', p: 1 }} component='footer'>
         <Copyright />
       </Box>
       {/* End footer */}

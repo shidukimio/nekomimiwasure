@@ -1,9 +1,9 @@
-import {CircularProgress} from '@mui/material';
-import type {ListResult, StorageReference} from 'firebase/storage';
-import {getDownloadURL, getMetadata, listAll, ref} from 'firebase/storage';
-import type {Dispatch, SetStateAction} from 'react';
-import {useEffect, useState} from 'react';
-import type {ReactImageGalleryItem} from 'react-image-gallery';
+import { CircularProgress } from '@mui/material';
+import type { ListResult, StorageReference } from 'firebase/storage';
+import { getDownloadURL, getMetadata, listAll, ref } from 'firebase/storage';
+import type { Dispatch, SetStateAction } from 'react';
+import { useEffect, useState } from 'react';
+import type { ReactImageGalleryItem } from 'react-image-gallery';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import storage from './firebase';

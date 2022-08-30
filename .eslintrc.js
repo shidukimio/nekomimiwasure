@@ -23,6 +23,10 @@ module.exports = {
         'xo-typescript',
         'xo-typescript/space',
       ],
+      // typescriptのルールを上書きする場合はこの場所のルールで記載しないと上書きできない
+      rules: {
+        '@typescript-eslint/object-curly-spacing': ['error', 'always'], // PrettierのデフォルトbracketSpacing[true]を優先
+      },
       files: ['*.ts', '*.tsx'],
     },
   ],
@@ -35,7 +39,7 @@ module.exports = {
     // https://zenn.dev/toshiyuki/articles/d2d8b53a9cbfa8
     'react/function-component-definition': [
       'error',
-      {namedComponents: 'arrow-function'},
+      { namedComponents: 'arrow-function' },
     ],
     'react/react-in-jsx-scope': 'off',
 
@@ -45,8 +49,9 @@ module.exports = {
     // 個人的な設定
     'capitalized-comments': 'off', // コメントの最初の文字の大文字化を強制または禁止する→コメントの書き方を強制されたくない
     'no-warning-comments': 'off', // コメントで指定された警告用語(TODO等)を許可しない→コメントの書き方を強制されたくない
-    yoda: ['error', 'never', {onlyEquality: true}], // 「ヨーダ」条件を要求または禁止する→不等号の向きは揃えたいのでイコールの時だけ有効にする
+    yoda: ['error', 'never', { onlyEquality: true }], // 「ヨーダ」条件を要求または禁止する→不等号の向きは揃えたいのでイコールの時だけ有効にする
     'arrow-parens': ['error', 'always'], // Prettierのデフォルト[always]を優先
     'arrow-body-style': ['error', 'always'], // 省略せずに{}とreturnを記載する→書き方が複数あるのがわかりにくい、機能拡張した時の変化点が大きい
+    'object-curly-spacing': ['error', 'always'], // PrettierのデフォルトbracketSpacing[true]を優先
   },
 };
