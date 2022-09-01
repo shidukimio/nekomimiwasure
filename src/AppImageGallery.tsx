@@ -1,4 +1,4 @@
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Stack } from '@mui/material';
 import type { ListResult, StorageReference } from 'firebase/storage';
 import { getDownloadURL, getMetadata, listAll, ref } from 'firebase/storage';
 import type { Dispatch, SetStateAction } from 'react';
@@ -38,7 +38,7 @@ function setImages(
             console.log('21');
             images.push({
               original: url,
-              thumbnail: url,
+              thumbnail: process.env.PUBLIC_URL + '/thumbnail.svg',
               description: metadata.updated,
             });
           })
@@ -121,7 +121,11 @@ const AppImageGallery = () => {
 
   // 表示情報取得前は待機のイメージを表示
   if (stateImages.length <= 0) {
-    return <CircularProgress />;
+    return (
+      <Stack alignItems='center'>
+        <CircularProgress />
+      </Stack>
+    );
   }
 
   return <ImageGallery items={stateImages} />;
