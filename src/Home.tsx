@@ -5,25 +5,13 @@ import {
   createTheme,
   CssBaseline,
   Grid,
-  Link,
   ThemeProvider,
   Toolbar,
   Typography,
 } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AppImageGallery from './AppImageGallery';
-
-const Copyright = () => {
-  return (
-    <Typography variant='body2' color='text.secondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href={process.env.PUBLIC_URL}>
-        しづきみお
-      </Link>{' '}
-      {new Date().getFullYear().toString() + '.'}
-    </Typography>
-  );
-};
+import { Copyright } from './Copyright';
 
 // https://mui.com/material-ui/customization/color/
 // https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=FFEA00&primary.text.color=ECEFF1&secondary.text.color=3E2723
