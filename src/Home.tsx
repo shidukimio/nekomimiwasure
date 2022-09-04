@@ -19,6 +19,7 @@ import { getDownloadURL, getMetadata, listAll, ref } from 'firebase/storage';
 import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useState } from 'react';
 import type { ReactImageGalleryItem } from 'react-image-gallery';
+import { RadioButtonUnchecked } from '@mui/icons-material';
 
 const listRef = ref(storage, 'public/images');
 
@@ -50,7 +51,10 @@ function setImages(
             console.log('21');
             images.push({
               original: url,
-              thumbnail: process.env.PUBLIC_URL + '/thumbnail.svg',
+              thumbnail: '...',
+              renderThumbInner() {
+                return <RadioButtonUnchecked />;
+              },
               description: metadata.updated,
             });
           })

@@ -27,7 +27,7 @@ const AppImageGallery = ({
         </Stack>
       }
     >
-      <ReactImageGallery lazyLoad items={stateImages} />)
+      <ReactImageGallery lazyLoad items={stateImages} />
     </Suspense>
   );
 };
