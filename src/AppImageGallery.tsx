@@ -1,9 +1,12 @@
 import { CircularProgress, Stack } from '@mui/material';
-import React from 'react';
+import { lazy } from 'react';
 import { Suspense } from 'react';
 import type { ReactImageGalleryItem } from 'react-image-gallery';
-import ReactImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
+
+const ReactImageGallery = lazy(async () => {
+  return import('react-image-gallery');
+});
 
 const AppImageGallery = ({
   stateImages,
