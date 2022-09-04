@@ -1,7 +1,6 @@
 import {
   AppBar,
   Box,
-  CircularProgress,
   Container,
   createTheme,
   CssBaseline,
