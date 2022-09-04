@@ -17,10 +17,8 @@ import storage from './firebase';
 import type { ListResult, StorageReference } from 'firebase/storage';
 import { getDownloadURL, getMetadata, listAll, ref } from 'firebase/storage';
 import type { Dispatch, SetStateAction } from 'react';
-import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 import type { ReactImageGalleryItem } from 'react-image-gallery';
-import { Stack } from '@mui/system';
 
 const listRef = ref(storage, 'public/images');
 
@@ -168,15 +166,7 @@ export const Home = () => {
         <Container sx={{ py: 1 }} maxWidth='lg'>
           <Grid container>
             <Grid item xs={12}>
-              <Suspense
-                fallback={
-                  <Stack alignItems='center'>
-                    <CircularProgress />
-                  </Stack>
-                }
-              >
-                <AppImageGallery stateImages={stateImages} />
-              </Suspense>
+              <AppImageGallery stateImages={stateImages} />
             </Grid>
           </Grid>
         </Container>

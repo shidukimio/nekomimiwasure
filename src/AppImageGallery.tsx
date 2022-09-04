@@ -1,6 +1,8 @@
 import { CircularProgress, Stack } from '@mui/material';
+import React from 'react';
+import { Suspense } from 'react';
 import type { ReactImageGalleryItem } from 'react-image-gallery';
-import ImageGallery from 'react-image-gallery';
+import ReactImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 const AppImageGallery = ({
@@ -17,7 +19,17 @@ const AppImageGallery = ({
     );
   }
 
-  return <ImageGallery items={stateImages} />;
+  return (
+    <Suspense
+      fallback={
+        <Stack alignItems='center'>
+          <CircularProgress />
+        </Stack>
+      }
+    >
+      <ReactImageGallery lazyLoad items={stateImages} />)
+    </Suspense>
+  );
 };
 
 export default AppImageGallery;
