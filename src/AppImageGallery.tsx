@@ -27,7 +27,19 @@ const AppImageGallery = ({
         </Stack>
       }
     >
-      <ReactImageGallery lazyLoad items={stateImages} />
+      {/*
+      https://tech-memo.yonayona.biz/posts/react-image-gallery
+
+      lazyLoad:遅延ロード
+      showThumbnails:サムネイル表示
+      showBullets:イメージに対応するボタンを表示
+       */}
+      <ReactImageGallery
+        lazyLoad
+        showBullets
+        showThumbnails={false}
+        items={stateImages}
+      />
     </Suspense>
   );
 };
